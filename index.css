@@ -1,0 +1,55 @@
+#chess {
+    display: grid;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(8, 50px);
+    justify-content: center;
+    align-items: center;
+
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    background-color: rgb(40, 136, 219);
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.light {
+    background-color: rgb(205, 213, 221);
+}
+.dark {
+    background-color: gray;
+}
+
+.green {
+    background-color: green;
+    color: white;
+}
+
+#reset {
+    height: 40px;
+    width:  150px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+button {
+    height: 40px;
+    width:  150px;
+    background-color: rgb(30, 196, 75);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
