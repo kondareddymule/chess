@@ -299,7 +299,7 @@ function userselect(button) {
     }
 }
 
-queen.addEventListener('click', () => userselect('queen', ))
+queen.addEventListener('click', () => userselect('queen'))
 elephant.addEventListener('click', () => userselect('elephant'))
 horse.addEventListener('click', () => userselect('horse'))
 cross.addEventListener('click', () => userselect('cross'))
