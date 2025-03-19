@@ -53,3 +53,8 @@ button {
     align-items: center;
     cursor: pointer;
 }
+
+.black {
+    color: white;
+    background-color: black;
+}
