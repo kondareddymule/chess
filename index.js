@@ -30,52 +30,51 @@ reset.addEventListener('click', function() {
 
 let items = []
 
+let grid = []
+
 let shapecount = {}
 
 function handleclass(e, shape) {
     const target = e.target.id;
-    const element = document.getElementById(target);
-    if (!items.includes(element)) {
-        items.push(element)
-    }
-
-    console.log(items)
-    
+    const element = document.getElementById(target)
+    current = []
+    let id = element.id
+    let row = Math.floor(id/8)
+    let col = id % 8
+    current.push({row, col, id})
 
     switch (shape) {
         case 'queen':
+            if (shapecount[shape] >= 2) {
+                return;
+            }
             if(shapecount[shape]) {
                 shapecount[shape] += 1
             } else {
                 shapecount[shape] = 1
             }
 
-            if (shapecount[shape] > 2) {
-                return;
-            }
+
             if (shapecount[shape] === 1) {
+                if (!items.includes(element)) {
+                    items.push(element)
+                }
                 if (element.classList.contains("green")) {
                     element.classList.remove('green');
                     element.textContent = ""
-                    let index = items.indexOf(element)
-                    items.splice(index,1)
-                    let gridIndex = grid.indexOf(element)
-                    grid.splice(gridIndex,1)
                 } else {
                     element.classList.add('green');
                     element.textContent = "♕"
-                    return;
                 }
             }
 
             if (shapecount[shape] === 2) {
+                if (!items.includes(element)) {
+                    items.push(element)
+                }
                 if (element.classList.contains("black")) {
                     element.classList.remove('black');
                     element.textContent = ""
-                    let index = items.indexOf(element)
-                    items.splice(index,1)
-                    let gridIndex = grid.indexOf(element)
-                    grid.splice(gridIndex,1)
                 } else {
                     element.classList.add('black');
                     element.textContent = "♕"
@@ -89,19 +88,21 @@ function handleclass(e, shape) {
                 const col = id % 8;
                 grid.push({ row, col, id });
             });
-            console.log(grid)
+
 
 
             message = false;
-            for (let i = 0; i < grid.length; i++) {
-                for (let j = i + 1; j < grid.length; j++) {
-                    if (grid[i].row === grid[j].row || grid[i].col === grid[j].col || Math.abs(grid[i].row - grid[j].row) === Math.abs(grid[i].col - grid[j].col))  {
+            if (grid.length > 1 ) {
+                let current = grid[grid.length - 1]
+                for (let i = 0; i < grid.length - 1; i++) {
+                    if (current.row === grid[i].row || current.col === grid[i].col || 
+                        Math.abs(current.row - grid[i].row) === Math.abs(current.col - grid[i].col))  {
                         message = true;
                         break;
                     }
-                }
-                if (message) {
-                    break;
+                    if (message) {
+                        break;
+                    }
                 }
             }
 
@@ -112,59 +113,61 @@ function handleclass(e, shape) {
             }
             break
         case 'elephant':
+            if (shapecount[shape] >= 2) {
+                return;
+            }
             if(shapecount[shape]) {
                 shapecount[shape] += 1
             } else {
                 shapecount[shape] = 1
             }
-
-            if (shapecount[shape] > 2) {
-                return;
-            }
             if (shapecount[shape] === 1) {
+                if (!items.includes(element)) {
+                    items.push(element)
+                }
                 if (element.classList.contains("green")) {
                     element.classList.remove('green');
                     element.textContent = ""
-                    let index = items.indexOf(element)
-                    items.splice(index,1)
                     
                 } else {
                     element.classList.add('green');
                     element.textContent = "♖"
-                    return;
                 }
             }
 
             if (shapecount[shape] === 2) {
+                if (!items.includes(element)) {
+                    items.push(element)
+                }
                 if (element.classList.contains("black")) {
                     element.classList.remove('black');
                     element.textContent = ""
-                    let index = items.indexOf(element)
-                    items.splice(index,1)
                 } else {
                     element.classList.add('black');
                     element.textContent = "♖"
                 }
             }
-            gridele = []
+            grid = []
             items.forEach((item) => {
                 const id = item.id;
                 const row = Math.floor(id / 8);
                 const col = id % 8;
-                gridele.push({ row, col, id });
+                grid.push({ row, col, id });
             });
 
-            console.log(gridele)
+            console.log(items)
+            console.log(grid)
             message = false;
-            for (let i = 0; i < gridele.length; i++) {
-                for (let j = i + 1; j < gridele.length; j++) {
-                    if (gridele[i].row === gridele[j].row || gridele[i].col === gridele[j].col)  {
+            if (grid.length > 1 ) {
+                let current = grid[grid.length - 1]
+                for (let i = 0; i < grid.length - 1; i++) {
+                    if (current.row === grid[i].row || current.col === grid[i].col)  {
                         message = true;
                         break;
                     }
-                }
-                if (message) {
-                    break;
+                    if (message) {
+                        break;
+                    }
                 }
             }
 
@@ -176,68 +179,71 @@ function handleclass(e, shape) {
             break
 
         case 'horse':
+            if (shapecount[shape] >= 2) {
+                return;
+            }
             if(shapecount[shape]) {
                 shapecount[shape] += 1
             } else {
                 shapecount[shape] = 1
             }
 
-            if (shapecount[shape] > 2) {
-                return;
-            }
             if (shapecount[shape] === 1) {
+                if (!items.includes(element)) {
+                    items.push(element)
+                }
                 if (element.classList.contains("green")) {
                     element.classList.remove('green');
                     element.textContent = ""
-                    let index = items.indexOf(element)
-                    items.splice(index,1)
-                    let gridIndex = grid.indexOf(element)
-                    grid.splice(gridIndex,1)
                 } else {
                     element.classList.add('green');
                     element.textContent = "♘"
-                    return;
                 }
             }
 
             if (shapecount[shape] === 2) {
+                if (!items.includes(element)) {
+                    items.push(element)
+                }
                 if (element.classList.contains("black")) {
                     element.classList.remove('black');
                     element.textContent = ""
-                    let index = items.indexOf(element)
-                    items.splice(index,1)
                 } else {
                     element.classList.add('black');
                     element.textContent = "♘"
                 }
             }
 
-            gridhorse = []
-            
+            grid = [] 
             items.forEach((item) => {
                 const id = item.id;
                 const row = Math.floor(id / 8);
                 const col = id % 8;
-                gridhorse.push({ row, col, id });
+                grid.push({ row, col, id });
             });
 
+            console.log(items)
+            console.log(grid)
+
             message = false;
-            for (let i = 0; i < gridhorse.length; i++) {
-                for (let j = i + 1; j < gridhorse.length; j++) {
-                    if(gridhorse[i].row === gridhorse[j].row - 1 && gridhorse[i].col === gridhorse[j].col - 2 ||  
-                        gridhorse[i].row === gridhorse[j].row + 1 && gridhorse[i].col === gridhorse[j].col + 2 || 
-                        gridhorse[i].row === gridhorse[j].row - 1 && gridhorse[i].col === gridhorse[j].col + 2 || 
-                        gridhorse[i].row === gridhorse[j].row + 1 && gridhorse[i].col === gridhorse[j].col - 2 || 
-                        gridhorse[i].row === gridhorse[j].row + 2 && gridhorse[i].col === gridhorse[j].col - 1 || 
-                        gridhorse[i].row === gridhorse[j].row - 2 && gridhorse[i].col === gridhorse[j].col + 1 ||
-                        gridhorse[i].row === gridhorse[j].row - 2 && gridhorse[i].col === gridhorse[j].col - 1 || 
-                        gridhorse[i].row === gridhorse[j].row + 2 && gridhorse[i].col === gridhorse[j].col + 1)  {
-                        message = true;
+
+            if (grid.length > 1 ) {
+                let current = grid[grid.length - 1]
+                for (let i = 0; i < grid.length - 1; i++) {
+                    if(current.row === grid[i].row - 1 && current.col === grid[i].col - 2 ||  
+                        current.row === grid[i].row + 1 && current.col === grid[i].col + 2 || 
+                        current.row === grid[i].row - 1 && current.col === grid[i].col + 2 || 
+                        current.row === grid[i].row + 1 && current.col === grid[i].col - 2 || 
+                        current.row === grid[i].row + 2 && current.col === grid[i].col - 1 || 
+                        current.row === grid[i].row - 2 && current.col === grid[i].col + 1 ||
+                        current.row === grid[i].row - 2 && current.col === grid[i].col - 1 || 
+                        current.row === grid[i].row + 2 && current.col === grid[i].col + 1)  {
+                        message = true
                         break;
                     }
-                }
-                if (message) {
-                    break;
+                    if (message) {
+                        break;
+                    }
                 }
             }
 
@@ -246,61 +252,67 @@ function handleclass(e, shape) {
             } else {
                 conflict.textContent = ""
             }
-            break
+            break;
 
         case 'cross':
+            if (shapecount[shape] >= 2) {
+                return;
+            }
             if(shapecount[shape]) {
                 shapecount[shape] += 1
             } else {
                 shapecount[shape] = 1
             }
 
-            if (shapecount[shape] > 2) {
-                return;
-            }
             if (shapecount[shape] === 1) {
+                if (!items.includes(element)) {
+                    items.push(element)
+                }
                 if (element.classList.contains("green")) {
                     element.classList.remove('green');
                     element.textContent = ""
-                    let index = items.indexOf(element)
-                    items.splice(index,1)
                 } else {
                     element.classList.add('green');
                     element.textContent = "♗"
-                    return;
                 }
             }
 
             if (shapecount[shape] === 2) {
+                if (!items.includes(element)) {
+                    items.push(element)
+                }
                 if (element.classList.contains("black")) {
                     element.classList.remove('black');
                     element.textContent = ""
-                    let index = items.indexOf(element)
-                    items.splice(index,1)
+
                 } else {
                     element.classList.add('black');
                     element.textContent = "♗"
                 }
             }
 
-            gridcross = [];
+            grid = [];
             items.forEach((item) => {
                 const id = item.id;
                 const row = Math.floor(id / 8);
                 const col = id % 8;
-                gridcross.push({ row, col, id });
+                grid.push({ row, col, id });
             });
 
+            console.log(items)
+            console.log(grid)
+
             message = false;
-            for (let i = 0; i < gridcross.length; i++) {
-                for (let j = i + 1; j < gridcross.length; j++) {
-                    if (Math.abs(gridcross[i].row - gridcross[j].row) === Math.abs(gridcross[i].col - gridcross[j].col))  {
+            if (grid.length > 1 ) {
+                let current = grid[grid.length - 1]
+                for (let i = 0; i < grid.length - 1; i++) {
+                    if (Math.abs(current.row - grid[i].row) === Math.abs(current.col - grid[i].col)) {
                         message = true;
                         break;
                     }
-                }
-                if (message) {
-                    break;
+                    if (message) {
+                        break;
+                    }
                 }
             }
 
@@ -339,22 +351,18 @@ function userselect(button) {
     switch (button) {
         case 'queen':
             shape = 'queen'
-            items = []
             conflict.textContent = ""
             break
         case 'elephant':
             shape = 'elephant'
-            items = []
             conflict.textContent = ""
             break;
         case 'horse':
             shape = 'horse'
-            items = []
             conflict.textContent = ""
             break;
         case 'cross':
             shape = 'cross'
-            items = []
             conflict.textContent = ""
             break;
         default:
@@ -366,4 +374,3 @@ queen.addEventListener('click', () => userselect('queen'))
 elephant.addEventListener('click', () => userselect('elephant'))
 horse.addEventListener('click', () => userselect('horse'))
 cross.addEventListener('click', () => userselect('cross'))
-
